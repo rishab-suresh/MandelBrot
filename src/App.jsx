@@ -31,7 +31,7 @@ function App() {
       >
         Switch to {mode === 0 ? 'Julia' : 'Mandelbrot'} Set
       </button>
-      <Canvas camera={{ position: [4, 0, 2] }}>
+      <Canvas camera={{ position: [0, 0, 2] }}>
         <Fractal bgColor={bgColor} mode={mode} /> 
       </Canvas>
     </>

@@ -7,6 +7,11 @@ import * as THREE from 'three'
 import vertexShader from '../shaders/vertex.glsl'
 import fragmentShader from '../shaders/fragment.glsl'
 
+// --- FRACTAL SETTINGS ---
+// Try changing this value to adjust the horizontal position of the Mandelbrot set.
+// -0.5 is the mathematical center. -0.75 is a common visual center.
+const MANDELBROT_CENTER_X = -0.5;
+
 // Create a reusable shader material
 const FractalMaterial = shaderMaterial(
   // Uniforms: variables passed from JS to the shader
@@ -39,8 +44,8 @@ function Fractal({ mode, bgColor }) {
 
       if (mode === 0) { // Mandelbrot animation - visually centered
         const zoom = 0.7 + 0.5 * ((Math.sin(time * 0.2) + 1) / 2);
-        // Shifted the center point from -0.5 to -0.75 to better center the shape visually
-        const centerX = -0.75 + Math.cos(time * 0.13) * 0.7;
+        // Reverted the center point back to -0.5 and made it configurable via the constant above.
+        const centerX = MANDELBROT_CENTER_X + Math.cos(time * 0.13) * 0.7;
         
         materialRef.current.uniforms.u_center.value.x = centerX;
         materialRef.current.uniforms.u_center.value.y = 0.0;
